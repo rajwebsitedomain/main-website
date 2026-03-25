@@ -716,14 +716,19 @@ function Contact() {
     setStatus('idle');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-access_key: "fc9c0f68-9961-411e-8a73-c3f600f76de9"
-  ...formData
-        })
-      });
+    const formData = new FormData(event.target);
+const data = Object.fromEntries(formData.entries());
+
+const response = await fetch("https://api.web3forms.com/submit", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    access_key: "fc9c0f68-9961-411e-8a73-c3f600f76de9",
+    ...data
+  })
+});
 
       if (response.ok) {
         setStatus('success');
