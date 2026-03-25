@@ -710,38 +710,40 @@ function Contact() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus('idle');
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setStatus('idle');
 
-    try {
-    const formData = new FormData(event.target);
-const data = Object.fromEntries(formData.entries());
+  try {
+    const formData = new FormData(e.currentTarget); // ✅ FIX HERE
 
-const response = await fetch("https://api.web3forms.com/submit", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    access_key: "fc9c0f68-9961-411e-8a73-c3f600f76de9",
-    ...data
-  })
-});
+    const data = Object.fromEntries(formData.entries());
 
-      if (response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Failed to send');
-      }
-    } catch {
-      setStatus('error');
-    } finally {
-      setIsSubmitting(false);
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        access_key: "fc9c0f68-9961-411e-8a73-c3f600f76de9",
+        ...data
+      })
+    });
+
+    if (response.ok) {
+      setStatus("success");
+      e.currentTarget.reset(); // clear form
+    } else {
+      setStatus("error");
     }
-  };
+
+  } catch (error) {
+    setStatus("error");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section id="contact" className="py-32 relative">
