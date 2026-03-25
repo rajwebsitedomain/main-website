@@ -720,8 +720,8 @@ function Contact() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
-          ...formData
+access_key: "fc9c0f68-9961-411e-8a73-c3f600f76de9"
+  ...formData
         })
       });
 
