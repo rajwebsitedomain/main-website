@@ -1049,30 +1049,6 @@ function App() {
 
     document.addEventListener('click', handleClick);
 
-    // Cleanup (VERY IMPORTANT)
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-
-  }, []);
-
-  return (
-    <div>
-      <h1>Hello</h1>
-
-      {/* Year fix */}
-      <span>{new Date().getFullYear()}</span>
-    </div>
-  );
-}
-
-export default App;
-
-
-
-
-
-
 
 
 
