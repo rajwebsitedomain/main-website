@@ -990,68 +990,6 @@ function JsonLd() {
   );
 }
 
-
-
-
-import { useEffect } from "react";
-
-function App() {
-
-  useEffect(() => {
-
-    const visitorData: any = {
-      type: 'visit',
-      page: window.location.href,
-      referrer: document.referrer || 'Direct',
-      browser: navigator.userAgent,
-      screen: `${screen.width}x${screen.height}`,
-      language: navigator.language,
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      device: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
-      visit_time: new Date().toISOString()
-    };
-
-    // Get IP + location
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        visitorData.ip = data.ip;
-        visitorData.city = data.city;
-        visitorData.region = data.region;
-        visitorData.country = data.country_name;
-
-        fetch('https://sheetdb.io/api/v1/bw1sjj410wd1o', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: visitorData })
-        });
-      });
-
-    // Click tracking
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-
-      const clickData = {
-        type: 'click',
-        element: target.tagName,
-        id: target.id || '',
-        class: target.className || '',
-        page: window.location.href,
-        time: new Date().toISOString()
-      };
-
-      fetch('https://sheetdb.io/api/v1/bw1sjj410wd1o', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: clickData })
-      });
-    };
-
-    document.addEventListener('click', handleClick);
-
-
-
-
 // Main App
 export default function App() {
   useEffect(() => {
