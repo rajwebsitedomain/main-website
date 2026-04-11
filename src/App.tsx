@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
-// other imports...
 
-// Correct component syntax
-const App = () => {
+export default function App() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
   }, []);
@@ -11,5 +9,3 @@ const App = () => {
     // Your JSX here
   )
 }
-
-export default App
