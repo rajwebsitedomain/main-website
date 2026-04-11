@@ -5,7 +5,6 @@ import {
   Menu, X, ExternalLink, Quote, Mail, Phone,
   MapPin, ArrowUp, Send, CheckCircle, AlertCircle, Layers, Zap, Crown
 } from 'lucide-react';
-
 // Types
 interface Project {
   id: number;
