@@ -1,12 +1,8 @@
-// All imports at the top
 import React, { useEffect } from 'react'
-// ... other imports
+// other imports...
 
-// Other components, functions, constants
-// ... 
-
-// ONLY ONE App component at the end
-export default function App() {
+// Correct component syntax
+const App = () => {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
   }, []);
@@ -15,3 +11,5 @@ export default function App() {
     // Your JSX here
   )
 }
+
+export default App
