@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react'
 
-export default function App() {
+const App = () => {
   useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-  }, []);
+    document.documentElement.style.scrollBehavior = 'smooth'
+  }, [])
   
   return (
-    // Your JSX here
+    <div>
+      <h1>Hello World</h1>
+    </div>
   )
 }
+
+export default App
